@@ -2,10 +2,10 @@
 	width: 80%;
 	height: 80%;
 	border-radius: 1%;
-	background-color: #FFFDF6;
-	color: #e74c3c;
+	background-color: white;
+	color: gray;
 	padding: .5rem;
-	border: solid #FCD1E1 1px;
+	border: solid #CCC 1px;
 	position: absolute;
 }
 .level-1{

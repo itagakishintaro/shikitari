@@ -1,7 +1,7 @@
 var selected_points = [];
 
 var FLOOR_LEVEL = [1, 2];
-var FONT_SIZE = 12;
+var FONT_SIZE = 18;
 var RADIUS = 10;
 
 var floor_data = [];
@@ -50,16 +50,17 @@ console.log(floor_data);
             .attr("fill", function(d){
               c = d.category;
               if(c=="table"){
-                return "yellow";
+                return "#ffa500";
               }else if(c=="trafic"){
-                return "red";
+                return "#8fbc8f";
               }else{
-                return "blue";
+                return "#6495ed";
               }
             })
             .attr({'data-toggle': 'modal', 'data-target': '#myModal'})
             // ポイントごとにクリックイベントを生成
             .on("click", function(d){ 
+                $('#myModalLabel').text(d.topic);
                 $('.modal-body').text(d.content);
                 floor_data[index][0].size = Number(floor_data[index][0].size) + 1;
                 console.log(floor_data[0][index].size);
@@ -67,26 +68,27 @@ console.log(floor_data);
                 // console.log(selected_points); 
             });
         // ポイントごとに名前を表示
-        // svg.selectAll("text")
-        //     .data(floor_data[floor_level])
-        //     .enter().append("text")
-        //     .style("font-size", FONT_SIZE + "px")
-        //     .attr("fill", "gray")
-        //     .attr("x", function(d) {
+         svg.selectAll("text")
+             .data(floor_data[floor_level])
+             .enter().append("text")
+             .style("font-size", FONT_SIZE + "px")
+             .attr("fill", "black")
+             .attr("x", function(d) {
         //      if((d.lat - MIN_LAT) / (MAX_LAT - MIN_LAT) < 0.5){
         //          return (d.lat - MIN_LAT) / (MAX_LAT - MIN_LAT) * ( $("#floor_" + floor_level).width() - RADIUS * 2 ) + RADIUS + FONT_SIZE;
         //      }else{
         //          return (d.lat - MIN_LAT) / (MAX_LAT - MIN_LAT) * ( $("#floor_" + floor_level).width() - RADIUS * 2 ) + RADIUS - (d.Name.length + 1) * FONT_SIZE;
-        //      }
-        //     })
-        //     .attr("y", function(d) {
+                return d.x - d.size * 10 + 20;// - 30;
+             })
+             .attr("y", function(d) {
+               return d.y;
         //         return (MAX_LNG - d.lng) / (MAX_LNG - MIN_LNG) * ( $("#floor_" + floor_level).height() - RADIUS * 2 ) + RADIUS;
-        //     })
-        //     .text(function(d) {
-        //         return d.Name;
-        //     })
-        //     .attr({
-        //         'dominant-baseline': 'middle'
-        //     });
+             })
+             .text(function(d) {
+                 return d.topic;
+             })
+             .attr({
+                 'dominant-baseline': 'middle'
+             });
     });
   }
