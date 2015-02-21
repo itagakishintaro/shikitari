@@ -4,33 +4,46 @@ var FLOOR_LEVEL = [1, 2];
 var FONT_SIZE = 18;
 var RADIUS = 10;
 
+var svg;
 var floor_data = [];
+var current_index;
 
 d3.csv("data/Shibuya_Point.csv", function(error, data) {
     if (error != null) {
         console.log(err);
         return;
     }
-    floor_data[0] = data;
     floor_data[1] = data;
+
+    // 表示
     draw();
 });
 
+$(document).ready(function(){
+    $("#important").click(function(){
+        floor_data[1][current_index].size = Number(floor_data[1][current_index].size) + 1;
+        d3.select("#floor_1 svg").remove();
+        draw();
+    });
+});
+
 function draw(){
+    floor_level = 1;
     // var floor_data = [];
-    FLOOR_LEVEL.forEach(function(floor_level, index){
+    // FLOOR_LEVEL.forEach(function(floor_level, index){
         // 生活者/旅行者ごとにデータを生成
         // floor_data[floor_level] = data.filter(function(element) {
         //     return element.floorLevel === String(floor_level);
         // });
         // floor_data[0] = data;
         // floor_data[1] = data;
-console.log(floor_data);
+
         // svgタグを生成
-        var svg = d3.select("#floor_" + floor_level)
+        svg = d3.select("#floor_" + floor_level)
             .append("svg")
             .attr("width", "100%")
             .attr("height", "100%");
+
         // ポイントごとに円を生成
         svg.selectAll("circle")
             .data(floor_data[floor_level])
@@ -59,11 +72,10 @@ console.log(floor_data);
             })
             .attr({'data-toggle': 'modal', 'data-target': '#myModal'})
             // ポイントごとにクリックイベントを生成
-            .on("click", function(d){ 
+            .on("click", function(d,index){ 
                 $('#myModalLabel').text(d.topic);
                 $('.modal-body').text(d.content);
-                floor_data[index][0].size = Number(floor_data[index][0].size) + 1;
-                console.log(floor_data[0][index].size);
+                current_index = index;
                 // selected_points.push(d);
                 // console.log(selected_points); 
             });
@@ -90,5 +102,5 @@ console.log(floor_data);
              .attr({
                  'dominant-baseline': 'middle'
              });
-    });
+    // });
   }
