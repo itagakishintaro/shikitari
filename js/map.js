@@ -35,15 +35,17 @@ console.log(floor_data);
         svg.selectAll("circle")
             .data(floor_data[floor_level])
             .enter().append("circle")
-            .attr("cx", function(d) {
+            .attr("cx", function(d, i) {
                 //return $("#floor_" + floor_level).width() * Math.random();
-                return 10;
+                return d.x;
             })
-            .attr("cy", function(d) {
+            .attr("cy", function(d, i) {
                 // return $("#floor_" + floor_level).height() * Math.random();
-                return 10;
+                return d.y;
             })
-            .attr("r", RADIUS)
+            .attr("r", function(d) {
+                return d.size * 10;
+            })
             .attr("fill", "#e74c3c")
             .attr({'data-toggle': 'modal', 'data-target': '#myModal'})
             // ポイントごとにクリックイベントを生成
@@ -77,4 +79,4 @@ console.log(floor_data);
         //         'dominant-baseline': 'middle'
         //     });
     });
-}
+  }

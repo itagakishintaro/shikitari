@@ -1,3 +1,12 @@
-﻿category,topic,content,size
-交通,ラッシュ,おされる,10
-食,はし,迷い箸,5
+﻿category,topic,content,size,x,y
+table,how much,完食が求められる,6,170,360
+table,extra dishes,一杯目は問題なし。,2,300,550
+table,chopsticks,横置きでものを刺さない,10,100,550
+trafic,taxi,手をあげればどこでも乗車可能。,3,900,300
+trafic,train,長時間乗るときは奥に入るとよい。,5,800,200
+trafic,best choice,東京では電車が便利。,9,1000,150
+in store,rotating SUSHI  タッチパネルで注文する。
+in store,bar,チャージに注意。
+in store,Gyu-don,食券か後払いかの違いが有る。
+in store,PACHINKO,音とタバコの煙に注意。
+in store,hot spring,水着を着用しない。
