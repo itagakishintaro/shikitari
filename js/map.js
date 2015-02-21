@@ -46,7 +46,17 @@ console.log(floor_data);
             .attr("r", function(d) {
                 return d.size * 10;
             })
-            .attr("fill", "#e74c3c")
+            //.attr("fill", "#e74c3c")
+            .attr("fill", function(d){
+              c = d.category;
+              if(c=="table"){
+                return "yellow";
+              }else if(c=="trafic"){
+                return "red";
+              }else{
+                return "blue";
+              }
+            })
             .attr({'data-toggle': 'modal', 'data-target': '#myModal'})
             // ポイントごとにクリックイベントを生成
             .on("click", function(d){ 
