@@ -16,7 +16,8 @@ d3.csv("data/Shibuya_Point.csv", function(error, data) {
         // floor_data[floor_level] = data.filter(function(element) {
         //     return element.floorLevel === String(floor_level);
         // });
-        floor_data = data;
+        floor_data[0] = data;
+        floor_data[1] = data;
 console.log(floor_data);
         // svgタグを生成
         var svg = d3.select("#floor_" + floor_level)
@@ -37,10 +38,13 @@ console.log(floor_data);
             })
             .attr("r", RADIUS)
             .attr("fill", "#e74c3c")
+            .attr({'data-toggle': 'modal', 'data-target': '#myModal'})
             // ポイントごとにクリックイベントを生成
             .on("click", function(d){ 
-                selected_points.push(d);
-                console.log(selected_points); 
+                $('.modal-body').text(d.content);
+                console.log(d);
+                // selected_points.push(d);
+                // console.log(selected_points); 
             });
         // ポイントごとに名前を表示
         // svg.selectAll("text")
